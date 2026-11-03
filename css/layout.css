@@ -1,0 +1,155 @@
+.app-shell {
+  display: grid;
+  grid-template-columns: 16.5rem minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  height: 100vh;
+  padding: 2rem 1.25rem 1.5rem;
+  border-right: 1px solid var(--color-border);
+  background: #eeece2;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: fit-content;
+  min-height: 2.75rem;
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.brand__mark {
+  display: grid;
+  width: 2.75rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 0.6rem;
+  background: var(--color-primary);
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.brand__name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.brand__name span {
+  color: var(--color-primary);
+}
+
+.sidebar__eyebrow {
+  margin: 0 0 -1.25rem 0.6rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.main-nav {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.main-nav__link {
+  display: flex;
+  min-height: 2.85rem;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 0.55rem;
+  color: var(--color-muted);
+  font-size: 0.88rem;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.main-nav__link > span:first-child {
+  display: grid;
+  width: 1.4rem;
+  place-items: center;
+  color: var(--color-primary);
+  font-size: 1.1rem;
+}
+
+.main-nav__link:hover,
+.main-nav__link[aria-current="page"] {
+  background: var(--color-primary-soft);
+  color: var(--color-primary-dark);
+}
+
+.main-nav__link[aria-current="page"] {
+  box-shadow: inset 3px 0 var(--color-primary);
+}
+
+.sidebar-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  margin-top: auto;
+  padding: 1rem;
+  border: 1px solid #e4d8bd;
+  border-radius: 0.65rem;
+  background: var(--color-accent-soft);
+}
+
+.sidebar-note__icon {
+  color: #9a680b;
+  font-size: 1.2rem;
+}
+
+.sidebar-note p {
+  color: #684c19;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.main-content {
+  width: min(100%, calc(var(--content-width) + 5rem));
+  min-width: 0;
+  justify-self: center;
+  padding: 2.5rem clamp(1.25rem, 4vw, 3.5rem) 3rem;
+}
+
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  max-width: 19ch;
+}
+
+.page-header .eyebrow {
+  margin-bottom: 0.65rem;
+}
+
+.page-header__description {
+  margin-top: 0.75rem;
+  font-size: 1.05rem;
+}
+
+.content-section {
+  margin-top: 1.5rem;
+}
+
+.page-footer {
+  padding: 2rem 0 0.5rem;
+  text-align: center;
+}
+
+.page-footer p {
+  font-size: 0.82rem;
+}

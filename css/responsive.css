@@ -1,0 +1,122 @@
+@media (max-width: 960px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+    height: auto;
+    gap: 1.1rem;
+    padding: 1.1rem clamp(1rem, 4vw, 2rem);
+    border-right: 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .sidebar__eyebrow,
+  .sidebar-note {
+    display: none;
+  }
+
+  .main-nav {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.35rem;
+  }
+
+  .main-nav__link {
+    justify-content: center;
+    padding-inline: 0.45rem;
+    font-size: 0.78rem;
+    text-align: center;
+  }
+
+  .main-nav__link[aria-current="page"] {
+    box-shadow: inset 0 -3px var(--color-primary);
+  }
+
+  .main-nav__link > span:first-child {
+    display: none;
+  }
+
+  .main-content {
+    width: min(100%, calc(var(--content-width) + 2.5rem));
+    padding-top: 2rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .sidebar {
+    padding: 1rem;
+  }
+
+  .main-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .main-nav__link {
+    min-height: 2.75rem;
+    justify-content: flex-start;
+    padding-inline: 0.7rem;
+    font-size: 0.8rem;
+    text-align: left;
+  }
+
+  .main-content {
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  .page-header {
+    flex-direction: column;
+    gap: 0.9rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .prototype-badge {
+    align-self: flex-start;
+  }
+
+  .mission-list {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+  }
+
+  .section-heading__aside {
+    max-width: 10ch;
+    padding-top: 0.2rem;
+    font-size: 0.75rem;
+    text-align: left;
+  }
+
+  .section-heading {
+    flex-wrap: wrap;
+  }
+
+  .section-heading__aside {
+    max-width: none;
+    flex-basis: 100%;
+    padding-top: 0;
+  }
+
+  .task-form__actions .action-button,
+  .focus-controls .action-button {
+    min-height: 2.9rem;
+  }
+
+  .mission-card {
+    grid-template-columns: 2.4rem minmax(0, 1fr) auto;
+    gap: 0.65rem;
+    padding: 0.85rem;
+  }
+
+  .mission-card__number {
+    width: 2.4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

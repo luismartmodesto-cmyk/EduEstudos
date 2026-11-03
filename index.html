@@ -1,0 +1,354 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Organize seus estudos e avance pelo mapa de missões do eduEstudos.">
+    <meta name="theme-color" content="#f3f0e7">
+    <title>eduEstudos — Mapa de missões</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/map.css">
+    <link rel="stylesheet" href="css/missions.css">
+    <link rel="stylesheet" href="css/responsive.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Menu do eduEstudos">
+        <a class="brand" href="#mapa" aria-label="eduEstudos, início">
+          <span class="brand__mark" aria-hidden="true">e</span>
+          <span class="brand__name">edu<span>Estudos</span></span>
+        </a>
+
+        <p class="sidebar__eyebrow">SUA JORNADA</p>
+        <nav class="main-nav" aria-label="Navegação principal">
+          <a class="main-nav__link" href="#mapa" aria-current="page">
+            <span aria-hidden="true">⌖</span>
+            <span>Mapa de missões</span>
+          </a>
+          <a class="main-nav__link" href="#missao-atual">
+            <span aria-hidden="true">✦</span>
+            <span>Missão atual</span>
+          </a>
+          <a class="main-nav__link" href="#tarefas">
+            <span aria-hidden="true">▤</span>
+            <span>Minhas tarefas</span>
+          </a>
+          <a class="main-nav__link" href="#foco">
+            <span aria-hidden="true">◷</span>
+            <span>Foco</span>
+          </a>
+          <a class="main-nav__link" href="#progresso">
+            <span aria-hidden="true">↗</span>
+            <span>Progresso</span>
+          </a>
+          <a class="main-nav__link" href="#personagem">
+            <span aria-hidden="true">♙</span>
+            <span>Personagem e loja</span>
+          </a>
+          <a class="main-nav__link" href="#resumo">
+            <span aria-hidden="true">▧</span>
+            <span>Resumo para responsáveis</span>
+          </a>
+          <a class="main-nav__link" href="#privacidade">
+            <span aria-hidden="true">◇</span>
+            <span>Privacidade</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-note">
+          <span class="sidebar-note__icon" aria-hidden="true">✧</span>
+          <p>Um passo de cada vez. Sua jornada começa com uma missão.</p>
+        </div>
+      </aside>
+
+      <main class="main-content" id="conteudo">
+        <header class="page-header">
+          <div>
+            <p class="eyebrow">CAPÍTULO 1</p>
+            <h1>Restaurar o Mapa das Descobertas</h1>
+            <p class="page-header__description">Organize seus estudos e avance no seu próprio ritmo.</p>
+          </div>
+          <span class="prototype-badge">
+            <span aria-hidden="true"></span>
+            Atualizações em breve
+          </span>
+        </header>
+
+        <div id="storage-error" class="storage-error panel" role="alert" hidden>
+          <h2>Não foi possível ler os dados salvos</h2>
+          <p>O eduEstudos não alterou esses dados e pausou as funções para evitar substituí-los. Para continuar, confirme a reposição dos dados locais; você também pode cancelar e manter o conteúdo atual.</p>
+          <button type="button" id="storage-error-reset" class="action-button action-button--secondary">
+            Rever dados e opções
+          </button>
+        </div>
+
+        <section class="map-panel panel" id="mapa" aria-labelledby="mapa-titulo">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">SUA AVENTURA</p>
+              <h2 id="mapa-titulo">Mapa de missões</h2>
+            </div>
+            <p class="section-heading__aside">5 missões no capítulo</p>
+          </div>
+
+          <ol id="mission-list" class="mission-list" aria-label="Missões em sequência" aria-live="polite"></ol>
+        </section>
+
+        <section class="content-section panel" id="missao-atual" aria-labelledby="mission-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">PRÓXIMO PASSO</p>
+              <h2 id="mission-title">Missão 1: Encontrar o caminho</h2>
+            </div>
+            <span id="mission-current-status" class="status-label status-label--current">Disponível</span>
+          </div>
+          <div id="mission-detail"></div>
+          <p id="mission-feedback" class="task-feedback" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="content-section panel" id="tarefas" aria-labelledby="tarefas-titulo">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">ORGANIZAÇÃO</p>
+              <h2 id="tarefas-titulo">Minhas tarefas</h2>
+            </div>
+          </div>
+
+          <div class="tasks-shell">
+            <form id="task-form" class="task-form" novalidate>
+              <input id="task-id" type="hidden" name="taskId">
+              <div class="task-form__fields">
+                <label class="field">
+                  <span>Título da tarefa</span>
+                  <input id="task-title" name="title" type="text" maxlength="120" placeholder="Ex.: Revisar matemática" required>
+                </label>
+                <label class="field">
+                  <span>Tipo</span>
+                  <select id="task-category" name="category">
+                    <option value="estudo">Estudo</option>
+                    <option value="leitura">Leitura</option>
+                    <option value="projeto">Projeto</option>
+                  </select>
+                </label>
+                <label class="field">
+                  <span>Prioridade</span>
+                  <select id="task-priority" name="priority">
+                    <option value="baixa">Baixa</option>
+                    <option value="media" selected>Média</option>
+                    <option value="alta">Alta</option>
+                  </select>
+                </label>
+                <label class="field field--full">
+                  <span>Detalhes (opcional)</span>
+                  <textarea id="task-details" name="details" rows="3" maxlength="500" placeholder="O que precisa ser feito neste passo?"></textarea>
+                </label>
+              </div>
+
+              <div class="task-form__actions">
+                <button type="submit" class="action-button action-button--primary" id="task-submit">Adicionar tarefa</button>
+                <button type="button" class="action-button action-button--secondary" id="task-cancel-edit" hidden>Cancelar</button>
+              </div>
+              <p id="task-feedback" class="task-feedback" aria-live="polite"></p>
+            </form>
+
+            <div class="task-list-panel">
+              <div class="task-list-header">
+                <h3>Lista atual</h3>
+                <span id="task-count" class="status-label">0 tarefas</span>
+              </div>
+              <ul id="task-list" class="task-list" aria-live="polite"></ul>
+              <div id="task-empty" class="empty-state task-list-empty">
+                <span class="empty-state__icon" aria-hidden="true">▤</span>
+                <h3>Nenhuma tarefa por aqui ainda</h3>
+                <p>Adicione uma tarefa para começar a organizar seus estudos, leitura e projetos.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="content-section panel" id="foco" aria-labelledby="foco-titulo">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">TEMPO PARA ESTUDAR</p>
+              <h2 id="foco-titulo">Foco</h2>
+            </div>
+            <span id="focus-status" class="status-label status-label--current">Pronto para começar</span>
+          </div>
+
+          <div class="focus-panel">
+            <div class="focus-panel__header">
+              <div>
+                <label class="field focus-field" for="focus-task">
+                  <span>Tarefa principal</span>
+                  <select id="focus-task" name="focus-task"></select>
+                </label>
+              </div>
+
+              <div>
+                <label class="field focus-field" for="focus-duration">
+                  <span>Duração</span>
+                  <input id="focus-duration" type="number" min="5" max="25" value="15" step="5">
+                </label>
+              </div>
+            </div>
+
+            <div class="focus-timer" aria-live="polite">
+              <span id="focus-timer">15:00</span>
+            </div>
+
+            <div class="focus-controls">
+              <button type="button" id="focus-start" class="action-button action-button--primary">Iniciar</button>
+              <button type="button" id="focus-pause" class="action-button action-button--secondary">Pausar</button>
+              <button type="button" id="focus-resume" class="action-button action-button--secondary">Continuar</button>
+              <button type="button" id="focus-complete" class="action-button action-button--secondary">Concluir sessão</button>
+              <button type="button" id="focus-reset" class="action-button action-button--secondary focus-reset">Reiniciar</button>
+            </div>
+
+            <p id="focus-summary" class="focus-summary">Escolha uma tarefa e inicie a sessão.</p>
+          </div>
+        </section>
+
+        <section class="content-section panel progress-panel" id="progresso" aria-labelledby="progresso-titulo">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">SUAS CONQUISTAS</p>
+              <h2 id="progresso-titulo">Progresso</h2>
+            </div>
+            <span class="status-label status-label--current" id="progress-level">Nível 1</span>
+          </div>
+
+          <div id="progress-summary" class="progress-overview">
+            <div class="progress-card">
+              <span class="progress-label">XP total</span>
+              <strong id="progress-xp-value">0 XP</strong>
+            </div>
+            <div class="progress-card">
+              <span class="progress-label">Disponível</span>
+              <strong id="progress-available-xp">0 XP</strong>
+            </div>
+            <div class="progress-card">
+              <span class="progress-label">Concluídas</span>
+              <strong id="progress-complete-count">0</strong>
+            </div>
+          </div>
+
+          <div class="progress-meta">
+            <span id="progress-next-level">200 XP para o próximo nível</span>
+            <span id="progress-status">Faltam 200 XP para avançar.</span>
+          </div>
+          <div class="progress-bar" aria-label="Progresso do nível atual">
+            <span id="progress-bar-fill" class="progress-bar__fill"></span>
+          </div>
+        </section>
+
+        <section class="content-section panel" id="personagem" aria-labelledby="personagem-titulo">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">PERSONALIZAÇÃO</p>
+              <h2 id="personagem-titulo">Personagem e loja</h2>
+            </div>
+            <span class="status-label">Conteúdo provisório</span>
+          </div>
+
+          <div class="shop-header">
+            <p>Inventário mínimo de demonstração. Os itens abaixo são provisórios enquanto a lista final da loja não é confirmada.</p>
+            <span id="shop-balance" class="shop-balance">0 XP disponíveis</span>
+          </div>
+          <div id="shop-grid" class="shop-grid" aria-live="polite"></div>
+          <p id="shop-feedback" class="task-feedback" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="content-section panel" id="resumo" aria-labelledby="resumo-titulo">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">NO MESMO DISPOSITIVO</p>
+              <h2 id="resumo-titulo">Resumo para responsáveis</h2>
+            </div>
+          </div>
+          <p>Este resumo usa somente dados deste navegador e dispositivo. Não há monitoramento remoto.</p>
+          <div class="progress-overview parent-summary" aria-live="polite">
+            <div class="progress-card">
+              <span class="progress-label">Missões concluídas</span>
+              <strong id="summary-missions">0</strong>
+            </div>
+            <div class="progress-card">
+              <span class="progress-label">Tarefas concluídas</span>
+              <strong id="summary-tasks">0</strong>
+            </div>
+            <div class="progress-card">
+              <span class="progress-label">Tempo de foco</span>
+              <strong id="summary-focus">0 min</strong>
+            </div>
+            <div class="progress-card">
+              <span class="progress-label">Progresso</span>
+              <strong id="summary-level">Nível 1 · 0 XP</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="content-section panel privacy-panel" id="privacidade" aria-labelledby="privacidade-titulo">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">SEUS DADOS</p>
+              <h2 id="privacidade-titulo">Privacidade</h2>
+            </div>
+            <span class="privacy-panel__icon" aria-hidden="true">◇</span>
+          </div>
+          <p>O eduEstudos guarda dados apenas neste navegador e dispositivo, sem sincronização entre dispositivos.</p>
+          <p class="prototype-note">Os dados de tarefas, missões, foco e progresso ficam armazenados automaticamente neste navegador. Podem ser perdidos se os dados do navegador forem apagados ou se você mudar de dispositivo. Não informe dados pessoais reais.</p>
+          <button type="button" id="privacy-notice-open" class="text-link">Ver aviso de privacidade</button>
+          <div class="reset-panel">
+            <h3>Reposição completa</h3>
+            <p>A reposição apagará tarefas, missões, XP, nível, tempo de foco, compras, inventário e preferências locais.</p>
+            <p class="prototype-note">A reposição restaura o estado inicial atualmente configurado: sem tarefas, progresso, personagem selecionado ou itens desbloqueados.</p>
+            <button type="button" id="reset-data" class="action-button action-button--secondary">
+              Repor todos os dados
+            </button>
+          </div>
+        </section>
+
+        <footer class="page-footer">
+          <p>eduEstudos <span aria-hidden="true">·</span> Atualizações em breve</p>
+        </footer>
+      </main>
+    </div>
+
+    <dialog id="privacy-dialog" aria-labelledby="privacy-dialog-title" aria-describedby="privacy-dialog-description">
+      <div class="privacy-dialog__content">
+        <h2 id="privacy-dialog-title">Seus dados ficam neste dispositivo</h2>
+        <p id="privacy-dialog-description">O eduEstudos guarda dados apenas neste navegador e dispositivo. Eles não são sincronizados e podem se perder se os dados do navegador forem apagados ou se você mudar de dispositivo. Não é necessário informar dados pessoais reais.</p>
+        <p id="privacy-feedback" class="reset-feedback" role="status" aria-live="polite"></p>
+        <button type="button" id="privacy-notice-accept" class="action-button action-button--primary">Entendi</button>
+      </div>
+    </dialog>
+
+    <dialog id="reset-dialog" aria-labelledby="reset-dialog-title" aria-describedby="reset-dialog-description">
+      <div class="privacy-dialog__content">
+        <h2 id="reset-dialog-title">Apagar todos os dados locais?</h2>
+        <p id="reset-dialog-description">Esta ação apagará tarefas, missões, sessões de foco, XP, compras e preferências salvas neste navegador. O aplicativo será reiniciado no estado inicial e o aviso de privacidade aparecerá novamente. Essa ação não pode ser desfeita.</p>
+        <p id="reset-feedback" class="reset-feedback" role="status" aria-live="polite"></p>
+        <div class="reset-dialog__actions">
+          <button type="button" id="reset-dialog-cancel" class="action-button action-button--secondary">Cancelar</button>
+          <button type="button" id="reset-dialog-confirm" class="action-button action-button--primary">Apagar e reiniciar</button>
+        </div>
+      </div>
+    </dialog>
+
+    <script src="js/core/storage.js"></script>
+    <script src="js/config/missions-config.js"></script>
+    <script src="js/features/tasks/tasks.js"></script>
+    <script src="js/features/focus/focus.js"></script>
+    <script src="js/features/progression/progression.js"></script>
+    <script src="js/features/shop/shop.js"></script>
+    <script src="js/features/missions/missions.js"></script>
+    <script src="js/features/parent-summary/parent-summary.js"></script>
+    <script src="js/ui/privacy-notice.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
